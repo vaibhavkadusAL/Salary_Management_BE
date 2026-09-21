@@ -1,0 +1,10 @@
+com\acme\salarymanagement\repository\projection\CurrencySalaryStatProjection.class
+com\acme\salarymanagement\entity\Employee.class
+com\acme\salarymanagement\entity\SalaryRecord.class
+com\acme\salarymanagement\repository\projection\DepartmentSalaryStatProjection.class
+com\acme\salarymanagement\repository\EmployeeRepository.class
+com\acme\salarymanagement\repository\projection\DepartmentCountProjection.class
+com\acme\salarymanagement\repository\SalaryRecordRepository.class
+com\acme\salarymanagement\SalaryManagementApplication.class
+com\acme\salarymanagement\repository\projection\CountryCountProjection.class
+com\acme\salarymanagement\entity\EmploymentStatus.class
