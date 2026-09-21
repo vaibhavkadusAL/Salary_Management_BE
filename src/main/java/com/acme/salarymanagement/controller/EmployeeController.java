@@ -6,6 +6,7 @@ import com.acme.salarymanagement.service.EmployeeService;
 import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,10 @@ import java.math.BigDecimal;
 @Tag(name = "Employees", description = "Employee management, search, and filtering APIs")
 @RestController
 @RequestMapping("/api/employees")
+@RequiredArgsConstructor
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @Operation(summary = "List and search employees", description = "Retrieves paginated employee records with optional full-text search and multi-field filters.")
     @GetMapping

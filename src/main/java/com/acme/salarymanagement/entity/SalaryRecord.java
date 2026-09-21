@@ -2,10 +2,17 @@ package com.acme.salarymanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(
     name = "salary_records",
@@ -48,8 +55,6 @@ public class SalaryRecord {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public SalaryRecord() {}
-
     public SalaryRecord(Employee employee, BigDecimal baseSalary, BigDecimal bonus,
                         String currency, LocalDate effectiveFrom, String reason) {
         this.employee = employee;
@@ -77,77 +82,5 @@ public class SalaryRecord {
     public BigDecimal getTotalCompensation() {
         if (baseSalary == null) return BigDecimal.ZERO;
         return baseSalary.add(bonus != null ? bonus : BigDecimal.ZERO);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public BigDecimal getBaseSalary() {
-        return baseSalary;
-    }
-
-    public void setBaseSalary(BigDecimal baseSalary) {
-        this.baseSalary = baseSalary;
-    }
-
-    public BigDecimal getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(BigDecimal bonus) {
-        this.bonus = bonus;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public LocalDate getEffectiveFrom() {
-        return effectiveFrom;
-    }
-
-    public void setEffectiveFrom(LocalDate effectiveFrom) {
-        this.effectiveFrom = effectiveFrom;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

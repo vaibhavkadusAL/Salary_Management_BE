@@ -4,8 +4,8 @@ import com.acme.salarymanagement.entity.Employee;
 import com.acme.salarymanagement.entity.EmploymentStatus;
 import com.acme.salarymanagement.entity.SalaryRecord;
 import com.acme.salarymanagement.repository.EmployeeRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
@@ -16,10 +16,10 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class DataSeedingService implements CommandLineRunner {
-
-    private static final Logger log = LoggerFactory.getLogger(DataSeedingService.class);
 
     private final EmployeeRepository employeeRepository;
 
@@ -28,10 +28,6 @@ public class DataSeedingService implements CommandLineRunner {
 
     @Value("${app.seed.target-count:10000}")
     private int targetCount;
-
-    public DataSeedingService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
 
     @Override
     public void run(String... args) {

@@ -5,6 +5,7 @@ import com.acme.salarymanagement.dto.DashboardSummaryDto;
 import com.acme.salarymanagement.service.DashboardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Dashboard", description = "Executive compensation, headcount, and demographic analytics")
 @RestController
 @RequestMapping("/api/dashboard")
+@RequiredArgsConstructor
 public class DashboardController {
 
     private final DashboardService dashboardService;
-
-    public DashboardController(DashboardService dashboardService) {
-        this.dashboardService = dashboardService;
-    }
 
     @Operation(summary = "Get dashboard analytics", description = "Aggregates total headcount, active/inactive counts, currency payroll statistics, and country/department distributions.")
     @GetMapping("/summary")

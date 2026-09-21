@@ -2,9 +2,16 @@ package com.acme.salarymanagement.dto;
 
 import com.acme.salarymanagement.entity.EmploymentStatus;
 import jakarta.validation.constraints.*;
+import lombok.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class EmployeeCreateRequest {
 
     @NotBlank(message = "First name is required")
@@ -37,6 +44,7 @@ public class EmployeeCreateRequest {
     private LocalDate joiningDate;
 
     @NotNull(message = "Employment status is required")
+    @Builder.Default
     private EmploymentStatus status = EmploymentStatus.ACTIVE;
 
     // Initial compensation fields
@@ -45,6 +53,7 @@ public class EmployeeCreateRequest {
     private BigDecimal baseSalary;
 
     @DecimalMin(value = "0.0", inclusive = true, message = "Bonus must be positive or zero")
+    @Builder.Default
     private BigDecimal bonus = BigDecimal.ZERO;
 
     @NotBlank(message = "Currency is required")
@@ -54,111 +63,6 @@ public class EmployeeCreateRequest {
     @NotNull(message = "Salary effective date is required")
     private LocalDate effectiveFrom;
 
+    @Builder.Default
     private String reason = "Initial compensation";
-
-    public EmployeeCreateRequest() {}
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public String getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
-
-    public LocalDate getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(LocalDate joiningDate) {
-        this.joiningDate = joiningDate;
-    }
-
-    public EmploymentStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(EmploymentStatus status) {
-        this.status = status;
-    }
-
-    public BigDecimal getBaseSalary() {
-        return baseSalary;
-    }
-
-    public void setBaseSalary(BigDecimal baseSalary) {
-        this.baseSalary = baseSalary;
-    }
-
-    public BigDecimal getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(BigDecimal bonus) {
-        this.bonus = bonus;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public LocalDate getEffectiveFrom() {
-        return effectiveFrom;
-    }
-
-    public void setEffectiveFrom(LocalDate effectiveFrom) {
-        this.effectiveFrom = effectiveFrom;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
 }

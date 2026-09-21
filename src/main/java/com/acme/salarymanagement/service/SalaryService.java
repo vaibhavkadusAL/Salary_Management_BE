@@ -9,6 +9,7 @@ import com.acme.salarymanagement.exception.InvalidSalaryException;
 import com.acme.salarymanagement.mapper.SalaryMapper;
 import com.acme.salarymanagement.repository.EmployeeRepository;
 import com.acme.salarymanagement.repository.SalaryRecordRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,21 +18,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SalaryService {
 
     private final SalaryRecordRepository salaryRecordRepository;
     private final EmployeeRepository employeeRepository;
     private final SalaryMapper salaryMapper;
-
-    public SalaryService(
-        SalaryRecordRepository salaryRecordRepository,
-        EmployeeRepository employeeRepository,
-        SalaryMapper salaryMapper
-    ) {
-        this.salaryRecordRepository = salaryRecordRepository;
-        this.employeeRepository = employeeRepository;
-        this.salaryMapper = salaryMapper;
-    }
 
     @Transactional(readOnly = true)
     public List<SalaryRecordDto> getSalaryHistory(Long employeeId) {

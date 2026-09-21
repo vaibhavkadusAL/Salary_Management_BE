@@ -4,22 +4,16 @@ import com.acme.salarymanagement.dto.DashboardSummaryDto;
 import com.acme.salarymanagement.entity.EmploymentStatus;
 import com.acme.salarymanagement.repository.EmployeeRepository;
 import com.acme.salarymanagement.repository.SalaryRecordRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class DashboardService {
 
     private final EmployeeRepository employeeRepository;
     private final SalaryRecordRepository salaryRecordRepository;
-
-    public DashboardService(
-        EmployeeRepository employeeRepository,
-        SalaryRecordRepository salaryRecordRepository
-    ) {
-        this.employeeRepository = employeeRepository;
-        this.salaryRecordRepository = salaryRecordRepository;
-    }
 
     @Transactional(readOnly = true)
     public DashboardSummaryDto getDashboardSummary() {
