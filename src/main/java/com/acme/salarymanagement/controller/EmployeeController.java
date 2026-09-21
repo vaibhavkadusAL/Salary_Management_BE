@@ -4,12 +4,15 @@ import com.acme.salarymanagement.dto.*;
 import com.acme.salarymanagement.entity.EmploymentStatus;
 import com.acme.salarymanagement.service.EmployeeService;
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
+@Tag(name = "Employees", description = "Employee management, search, and filtering APIs")
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -20,6 +23,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    @Operation(summary = "List and search employees", description = "Retrieves paginated employee records with optional full-text search and multi-field filters.")
     @GetMapping
     public ResponseEntity<PageResponse<EmployeeDto>> getEmployees(
         @RequestParam(defaultValue = "0") int page,
@@ -51,18 +55,21 @@ public class EmployeeController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Get employee profile", description = "Retrieves complete employee profile including current compensation snapshot.")
     @GetMapping("/{employeeId}")
     public ResponseEntity<ApiResponse<EmployeeDto>> getEmployee(@PathVariable Long employeeId) {
         EmployeeDto employee = employeeService.getEmployeeById(employeeId);
         return ResponseEntity.ok(ApiResponse.success(employee));
     }
 
+    @Operation(summary = "Register new employee", description = "Creates a new employee record and establishes their initial salary.")
     @PostMapping
     public ResponseEntity<ApiResponse<EmployeeDto>> createEmployee(@Valid @RequestBody EmployeeCreateRequest request) {
         EmployeeDto created = employeeService.createEmployee(request);
         return new ResponseEntity<>(ApiResponse.success(created, "Employee created successfully"), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Update employee metadata", description = "Updates editable personal and employment metadata for an employee.")
     @PutMapping("/{employeeId}")
     public ResponseEntity<ApiResponse<EmployeeDto>> updateEmployee(
         @PathVariable Long employeeId,

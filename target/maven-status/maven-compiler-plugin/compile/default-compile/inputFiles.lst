@@ -1,4 +1,5 @@
 F:\Salary Management\backend\src\main\java\com\acme\salarymanagement\config\CorsConfig.java
+F:\Salary Management\backend\src\main\java\com\acme\salarymanagement\config\OpenApiConfig.java
 F:\Salary Management\backend\src\main\java\com\acme\salarymanagement\controller\DashboardController.java
 F:\Salary Management\backend\src\main\java\com\acme\salarymanagement\controller\EmployeeController.java
 F:\Salary Management\backend\src\main\java\com\acme\salarymanagement\controller\SalaryController.java
